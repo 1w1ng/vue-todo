@@ -1,0 +1,53 @@
+<html>
+
+<head>
+  <meta charset=utf-8>
+  <title>todo</title>
+  <style>
+    html,body,li{
+      margin:0;
+      padding:0;
+    }
+    #app{
+      width:600px;
+      padding:50px;
+      margin:0 auto;
+    }
+    #app>h2{
+      color:#333;
+    }
+    #text{
+      height:30px;
+      width:200px;
+      border:1px solid #ccc;
+      border-radius:5px;
+    }
+    #app li{
+      margin-top:20px;
+      color:pink;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <h2>{{ name }}</h2>
+    <div class="newTask">
+       <!-- 绑定数据 -->
+      <input id="text" placeholder=" Todo List" type="text" v-model="newTodo" @keypress.enter="addTodo">
+    </div>
+    <ol class="todos">
+      <li v-for="todo in todoList">
+        <input type="checkbox" v-model="todo.done">
+        {{ todo.title }}
+        <span v-if="todo.done">已完成</span>
+        <span v-else>未完成</span>
+
+        <button @click="removeTodo(todo)">x</button>
+      </li>
+    </ol>
+  </div>
+  <script src="bundle.js"></script>
+</body>
+
+</html>
